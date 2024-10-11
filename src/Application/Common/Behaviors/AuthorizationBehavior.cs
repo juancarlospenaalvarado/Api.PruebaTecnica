@@ -1,5 +1,4 @@
 ﻿using Domain.Security.Authorizations;
-//using Microsoft.AspNetCore.Authorization;
 using System.Reflection;
 
 namespace Application.Common.Behaviors;

@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Api.PruebaTecnica.Common.Errors;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Api.PruebaTecnica.Controllers;
 
 [ApiController]
+[Authorize]
 public class ApiController : ControllerBase
 {
     protected IActionResult Problem(List<Error> errors)
