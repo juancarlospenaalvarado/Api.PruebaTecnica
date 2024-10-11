@@ -1,21 +1,22 @@
 ﻿using Application.EmisionesCarbono.Common;
+using Application.EmisionesCarbono.GetById;
 using Domain.EmicionesCarbono;
 
-namespace Application.EmisionesCarbono.GetAll;
+namespace Application.EmisionesCarbono.GetByIdEmpresa;
 
-internal class GetAllEmisionesCarbonoQueryHandler : IRequestHandler<GetAllEmisionesCarbonoQuery, ErrorOr<IReadOnlyList<EmisionesCarbonoResponse>>>
+internal class GetByIdEmpresaQueryHandler :
+    IRequestHandler<GetByIdEmpresaQuery, ErrorOr<IReadOnlyList<EmisionesCarbonoResponse>>>
 {
     private readonly IEmisionCarbonoRepository _repository;
 
-    public GetAllEmisionesCarbonoQueryHandler(IEmisionCarbonoRepository repository)
+    public GetByIdEmpresaQueryHandler(IEmisionCarbonoRepository repository)
     {
         _repository = repository ?? throw new ArgumentNullException(nameof(repository));
     }
 
-    public async Task<ErrorOr<IReadOnlyList<EmisionesCarbonoResponse>>> Handle(GetAllEmisionesCarbonoQuery query, CancellationToken cancellationToken)
+    public async Task<ErrorOr<IReadOnlyList<EmisionesCarbonoResponse>>> Handle(GetByIdEmpresaQuery query, CancellationToken cancellationToken)
     {
-
-        IReadOnlyList<EmisionCarbono> emisionCarbonos = await _repository.GetAll();
+        IReadOnlyList<EmisionCarbono> emisionCarbonos = await _repository.GetByIdEmpresaAsync(query.Id);
 
         return emisionCarbonos.Select(emision => new EmisionesCarbonoResponse(
                emision.Id,

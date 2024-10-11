@@ -20,7 +20,8 @@ public sealed class EmisionCarbono : AggregateRoot
                           string descripcion,
                           Decimal cantidad,
                           DateTime fechaEmicion,
-                          string tipoEmicion)
+                          string tipoEmicion,
+                          int status)
     {
         Id = id;
         EmpresaId = empresaId;
@@ -28,7 +29,22 @@ public sealed class EmisionCarbono : AggregateRoot
         Cantidad = cantidad;
         FechaEmicion = fechaEmicion;
         TipoEmicion = tipoEmicion;
-        Status = Status;
+        Status = Convert.ToBoolean(status);
+
+    }
+    public EmisionCarbono(
+                      int empresaId,
+                      string descripcion,
+                      Decimal cantidad,
+                      DateTime fechaEmicion,
+                      string tipoEmicion)
+    {
+        EmpresaId = empresaId;
+        Descripcion = descripcion;
+        Cantidad = cantidad;
+        FechaEmicion = fechaEmicion;
+        TipoEmicion = tipoEmicion;
+        Status = true;
 
     }
 
