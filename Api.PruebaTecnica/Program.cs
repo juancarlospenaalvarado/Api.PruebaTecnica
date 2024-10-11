@@ -6,10 +6,6 @@ using Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
-builder.Services.AddControllers();
-
 builder.Services.AddPresentation()
                 .AddInfrastructure(builder.Configuration)
                 .AddApplication();
