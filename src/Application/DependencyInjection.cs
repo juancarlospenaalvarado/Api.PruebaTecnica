@@ -1,5 +1,6 @@
 ﻿using Application.Common.Behaviors;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 
 namespace Application;
 
@@ -9,6 +10,7 @@ public static class DependencyInjection
     {
         services.AddMediatR(config => {
             config.RegisterServicesFromAssemblyContaining<ApplicationAssemblyReference>();
+            config.AddOpenBehavior(typeof(AuthorizationBehavior<,>));
         });
 
         services.AddScoped(
